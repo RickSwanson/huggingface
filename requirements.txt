@@ -1,0 +1,7 @@
+numpy<2.0
+pandas
+jupyter
+datasets
+gradio
+transformers
+torch
