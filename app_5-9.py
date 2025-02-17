@@ -4,9 +4,9 @@ import gradio as grad
 zero_shot_classifier = pipeline("zero-shot-classification")
 
 def classify(text,labels):
-    classifer_labels = labels.split(",")
-    #["software", "politics", "love", "movies", "emergency", "advertisment","sports"]
-    response = zero_shot_classifier(text,classifer_labels)
+    classifier_labels = labels.split(",")
+    #["software", "politics", "love", "movies", "emergency", "advertisement", "sports"]
+    response = zero_shot_classifier(text, classifier_labels)
     return response
 
 txt=grad.Textbox(lines=1, label="English", placeholder="text to be classified")

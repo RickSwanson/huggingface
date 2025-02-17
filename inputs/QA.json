@@ -1,17 +1,60 @@
 {
 
-	question {
+	"question": 
+	
+		"Which region is Delhi part of?",
 
-		Which region is Delhi part of
+	"context":
 
-	}
+		"New Delhi is the capital of India and a part of the National Capital Territory of Delhi (NCT),  New Delhi is the seat of all three branches of the govermebt of India hosting the Rashtrapati Bhavan, Parliment House, and the Supreme Court of India.  New Delhi is a municipality withibn the NCT, administrated by the NDMC, which covers mostly Lutyens Delhi and a few admacent areas.  The municipal area is part of a larger admiistrative district, the New Delhi district"
 
+}	
 
-	context {
+{
 
-		New Delhi is the capital of India and a part of the National Capital Territory of Delhi (NCT),  New Delhi is the seat of all three branches of the govermebt of India hosting the Rashtrapati Bhavan, Parliment House, and the Supreme Court of India.  New Delhi is a municipality withibn the NCT, administrated by the NDMC, which covers mostly Lutyens Delhi and a few admacent areas.  The municipal area is part of a larger admiistrative district, the New Delhi district,
+	# Figure 5-17
+	
+	"question":
 
-	}
+		"Nature is made of everything we see around us - trees, flowers, plants, animals sky, mountains, forests and more.  Human beings depend on nbature to stay alive.  Nature helps us breathe, gives us food, water, shelter, mediciines, and clothes.  We find many colors in nature which make the Earth beautiful.  Animals, fish and insects also get their food and shelter from nature.  Different trees grow up due to sunlight and water provided by nature.  Humans should stop causing harm to the elements of nature for their needs.  Nature is very important to maintain the growth and balance on earth"
 
 }
->
+
+{
+
+	# Figure 5-8
+
+	"question":
+
+		"Sports are very essential for every human life which keeps them fit and fine and pysical strength.  It has great importance in each stage of life.  It also improves the personality of people.  Sports keep our all organs alert and our hearts become stronger by regularly playing some kind of sports.  Sports has always given prioriy from old ages and nowadays it has become more fascinating.  Due to the physical activity blood pressure also remains healthy, and blood vessels remain clean.  Sugar level also reduces and cholesterol comes down by daily activy.  Different people have different interests in sports but the action is the same in all sports.  Sports are becoming big channels to make more capital/money day by day and the number of people is also increasing.  By playing sports even at a young age you can also be better and free from some diseases.  By playing sports lung function also improves and becomes healthy because more oxygen is supplied.  Sports also improves bone strength even in old age."
+
+}
+
+
+{
+
+	# Figure 5-9
+
+	"English"
+
+		"I will be playing badminton tournament soon"
+
+	"Labels"
+
+		"software, politics, love, movies, emergency, advertisement"
+
+}
+
+{
+
+	# Figure 5-10
+
+	"English"
+
+		"I love to play hockey"
+
+	"Label"
+	
+		"sports"
+
+}
