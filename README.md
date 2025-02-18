@@ -244,7 +244,7 @@ def generate(starting_text):
        response=response+f"{i}: {gpt2_tkn.decode(x, skip_special_tokens=True)}"
     return response
 ```
-#### app_5-18.py
+#### app_5-18.py - lower the temperature
 ```
 from transformers import GPT2LMHeadModel,GPT2Tokenizer
 import gradio as grad
@@ -262,7 +262,8 @@ txt=grad.Textbox(lines=1, label="English", placeholder="English Text here")
 out=grad.Textbox(lines=1, label="Generated Text")
 grad.Interface(generate, inputs=txt, outputs=out).launch()
 ```
-#### app_5-19.py
+#### app_5-19.py - Text Generation
+Using model distilgpt2
 ```
 from transformers import pipeline, set_seed
 import gradio as grad
@@ -275,7 +276,7 @@ txt=grad.Textbox(lines=1, label="English", placeholder="English Text here")
 out=grad.Textbox(lines=1, label="Generated Text")
 grad.Interface(generate, inputs=txt, outputs=out).launch()
 ```
-#### app_5-20.py
+#### app_5-20.py - Text to Text Generation
 ```
 from transformers import AutoModelWithLMHead, AutoTokenizer
 import gradio as grad
@@ -294,7 +295,7 @@ ans=grad.Textbox(lines=1, label="Answer")
 out=grad.Textbox(lines=1, label="Genereated Question")
 grad.Interface(text2text, inputs=[context,ans], outputs=out).launch()
 ```
-#### app_5-21.py
+#### app_5-21.pym - Summarize text (T5)
 ```
 from transformers import AutoTokenizer, AutoModelWithLMHead
 import gradio as grad
@@ -316,7 +317,7 @@ para=grad.Textbox(lines=10, label="Paragraph", placeholder="Copy paragraph")
 out=grad.Textbox(lines=1, label="Summary")
 grad.Interface(text2text_summary, inputs=para, outputs=out).launch()
 ```
-#### app_5-22.py
+#### app_5-22.py - English-to-German Using T5
 ```
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import gradio as grad
@@ -332,7 +333,7 @@ para=grad.Textbox(lines=1, label="English Text", placeholder="Text in English")
 out=grad.Textbox(lines=1, label="German Translation")
 grad.Interface(text2text_translation, inputs=para, outputs=out).launch()
 ```
-#### app_5-23.py
+#### app_5-23.py - English to French
 ```
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import gradio as grad
@@ -348,7 +349,7 @@ para=grad.Textbox(lines=1, label="English Text", placeholder="Text in English")
 out=grad.Textbox(lines=1, label="French Translation")
 grad.Interface(text2text_translation, inputs=para, outputs=out).launch()
 ```
-#### app_5-24.py
+#### app_5-24.py - Sentiment classification using T5 modelclear
 ```
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import gradio as grad
@@ -364,7 +365,7 @@ para=grad.Textbox(lines=1, label="English Text", placeholder="Text in English")
 out=grad.Textbox(lines=1, label="Sentiment")
 grad.Interface(text2text_sentiment, inputs=para, outputs=out).launch()
 ```
-#### app_5-25.py
+#### app_5-25.py - grammatical checking
 ```
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import gradio as grad
@@ -380,7 +381,7 @@ para=grad.Textbox(lines=1, label="English Text", placeholder="Text in English")
 out=grad.Textbox(lines=1, label="Whether the sentence is acceptable or not")
 grad.Interface(text2text_acceptable_sentence, inputs=para, outputs=out).launch()
 ```
-#### app_5-26.py
+#### app_5-26.py - Check to see if two sentences are paraphrases of each other
 ```
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import gradio as grad
@@ -399,7 +400,7 @@ sent2=grad.Textbox(lines=1, label="Sentence2", placeholder="Text in English")
 out=grad.Textbox(lines=1, label="Whether the sentence is acceptable or not")
 grad.Interface(text2text_paraphrase, inputs=[sent1,sent2], outputs=out).launch()
 ```
-#### app_5-27.py
+#### app_5-27.py - Is a deduction correct or not
 ```
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import gradio as grad
@@ -418,4 +419,53 @@ sent2=grad.Textbox(lines=1, label="Sentence2", placeholder="Text in English")
 out=grad.Textbox(lines=1, label="Whether sentence2 is deductible from sentence1")
 grad.Interface(text2text_ deductible, inputs=[sent1,sent2], outputs=out).launch()
 ```
+#### app_5-28.py - Sample bot
+````
+from transformers import AutoModelForCausalLM, AutoTokenizer,BlenderbotForConditionalGeneration
+import torch
+chat_tkn = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
+mdl = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-medium")
+#chat_tkn = AutoTokenizer.from_pretrained("facebook/blenderbot-400M-distill")
+#mdl = BlenderbotForConditionalGeneration.from_pretrained("facebook/blenderbot-400M-distill")
 
+def converse(user_input, chat_history=[]):
+    user_input_ids = chat_tkn(user_input + chat_tkn.eos_token, return_tensors='pt').input_ids
+    # keep history in the tensor
+    bot_input_ids = torch.cat([torch.LongTensor(chat_history), user_input_ids], dim=-1)
+    # get response
+    chat_history = mdl.generate(bot_input_ids, max_length=1000, pad_token_id=chat_tkn.eos_token_id).tolist()
+    print (chat_history)
+    response = chat_tkn.decode(chat_history[0]).split("<|endoftext|>")
+    print("starting to print response")
+    print(response)
+    # html for display
+    html = "<div class='mybot'>"
+    for x, mesg in enumerate(response):
+        if x%2!=0 :
+           mesg="Alicia:"+mesg
+           clazz="alicia"
+        else :
+           clazz="user"
+        print("value of x")
+        print(x)
+        print("message")
+        print (mesg)
+        html += "<div class='mesg {}'> {}</div>".format(clazz, mesg)
+    html += "</div>"
+    print(html)
+    return html, chat_history
+import gradio as grad
+css = """
+.mychat {display:flex;flex-direction:column}
+.mesg {padding:5px;margin-bottom:5px;border-radius:5px;width:75%}
+.mesg.user {background-color:lightblue;color:white}
+.mesg.alicia {background-color:orange;color:white,align-self:self-end}
+.footer {display:none !important}
+"""
+text=grad.inputs.Textbox(placeholder="Lets chat")
+grad.Interface(fn=converse,
+             theme="default",
+             inputs=[text, "state"],
+             outputs=["html", "state"],
+             css=css).launch()
+````

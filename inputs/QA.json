@@ -12,7 +12,7 @@
 
 {
 
-	# Figure 5-17
+	# Listing 5-17
 	
 	"question":
 
@@ -22,7 +22,7 @@
 
 {
 
-	# Figure 5-8
+	# Listing 5-8
 
 	"question":
 
@@ -33,13 +33,13 @@
 
 {
 
-	# Figure 5-9
+	# Listing 5-9
 
-	"English"
+	"English":
 
 		"I will be playing badminton tournament soon"
 
-	"Labels"
+	"Labels":
 
 		"software, politics, love, movies, emergency, advertisement"
 
@@ -47,14 +47,57 @@
 
 {
 
-	# Figure 5-10
+	# Listing 5-10
 
-	"English"
+	"English":
 
 		"I love to play hockey"
 
-	"Label"
+	"Label":
 	
 		"sports"
 
 }
+
+{
+
+	# Listing 5-20
+
+	"English":
+
+		"Securing Kubernetes may seem like a mystifying task.  As a highly complex system composed of an array of different components, Kubernetes is not something you can secure by simply enabling a security module or installing a security tool.  Instead, Kubernetes security requires teams to address each type of securit risk that may impact the various layers and services withing a Kubernetes cluster.  for example, teams must understand how to secure Kubernetes nodes, networks, pods, data, and so on."
+
+}
+
+{
+
+	# Listing 5-21
+
+	"Paragraph":
+
+		"Securing Kubernetes may seem like a mystifying task.  As a highly complex system composed of an array of different components, Kubernetes is not something you can secure by simply enabling a security module or installing a security tool.  Instead, Kuberneetes security requires teams to address each type of security risk that may impact the various layers and services within a Kubernetes cluster.  For example, teams must understand how to secure Kubernetes nodes, networks, pods, data, and so on.  In addition, Kubernetes admins need to know which tools Kubernetes offers natively to address security concerns, and which types of third-party security tools they'll need to integrate with their clusters to fill in the gaps.  This is also a complex topic because, although Kubernetes isn't a security platform, it does provide certian types of native security tooling, such as Role-Based Access Control (RBAC).  All of the above can feel overwhelming if you're new to Kubernetes and still trying to wrap your head around how the whole thing works, let alone how to keep it secure.  But the concept are actually simple enough if you break them into digestible pieces.  Toward that end, this article walks through the various facets of Kubernetes security and explains the fundamentals of each one, as well as best practice for Kubernetes security at evry layer and service level."
+}
+
+{
+
+	"Sentence1":
+
+		"Securing Kubernetes may seem like a mystifying task. As a highly complex system composed of an array of different components, Kubernetes is not something you can secure by simply enabling a security module or installing a security tool."
+
+	"Sentence2":
+		
+		"Kubernetes security may appear to be a difficult task.  Kubernetes cannot be secured by merely turning on a security module or installing a security solution because it is a highly complicated system made up of numerous unique components."
+
+	}
+
+	{
+
+		"Sentence1":
+
+			"Securing Kubernetes may seme like a mystifying task"
+
+		"Sentence2":
+
+			"Kubernetes security is mystifying"	
+
+	}
